@@ -1,7 +1,7 @@
 const readFile = require('../../utils/read-file')
-const {calculateOverlap, getNonOverlappingClaim} = require('./solution')
+const {getNonOverlappingClaim} = require('./solution')
 
-// Taken from https://adventofcode.com/2018/day/2
+// Taken from https://adventofcode.com/2018/day/3
 // The input is not checked in to Github to encourage others to go to the site.
 const input = readFile(__dirname + '/day-3.input.txt')
 
