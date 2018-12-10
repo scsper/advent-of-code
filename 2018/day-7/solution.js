@@ -4,11 +4,10 @@ function getTuple (line) {
   return [splitLine[1], splitLine[7]]
 }
 
-function getInstructionList (lines) {
+function initializeData (lines) {
   const dependencyMap = {}
   const inverseDependencyMap = {}
   const noDependencies = new Set()
-  const instructionList = []
 
   lines.forEach(line => {
     const tuple = getTuple(line)
@@ -31,6 +30,13 @@ function getInstructionList (lines) {
     dependencyMap[step].add(stepDependedOn)
     inverseDependencyMap[stepDependedOn].add(step)
   })
+
+  return { dependencyMap, inverseDependencyMap, noDependencies }
+}
+
+function getInstructionList (lines) {
+  const { dependencyMap, inverseDependencyMap, noDependencies } = initializeData(lines)
+  const instructionList = []
 
   while (noDependencies.size) {
     const noDependenciesList = [...noDependencies]
